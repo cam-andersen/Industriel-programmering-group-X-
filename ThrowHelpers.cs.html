@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>ThrowHelpers.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #6c95eb;}
+.s1 { color: #d0d0d0;}
+.s2 { color: #bdbdbd;}
+.s3 { color: #ed94c0;}
+.s4 { color: #85c46c; font-style: italic;}
+.s5 { color: #c9a26d;}
+</style>
+</head>
+<body bgcolor="#262626">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ThrowHelpers.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">int </span><span class="s1">Control</span><span class="s2">(</span><span class="s0">int </span><span class="s1">altitude</span><span class="s2">)</span>
+<span class="s2">{</span>
+    <span class="s0">int </span><span class="s1">thruster </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+    
+    <span class="s0">if </span><span class="s2">(</span><span class="s1">altitude </span><span class="s2">&gt; </span><span class="s3">100</span><span class="s2">)</span>
+        <span class="s1">thruster </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;     </span><span class="s4">// over 100 m → thruster slukket</span>
+    <span class="s0">else if </span><span class="s2">(</span><span class="s1">altitude </span><span class="s2">&gt; </span><span class="s3">0</span><span class="s2">)</span>
+        <span class="s1">thruster </span><span class="s2">= </span><span class="s3">1</span><span class="s2">;     </span><span class="s4">// mellem 1 og 100 m → thruster tændt</span>
+    <span class="s0">else </span><span class="s2">{  </span><span class="s4">// ⚠️ flere handlinger under landing</span>
+        <span class="s1">altitude </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;     </span><span class="s4">// 0 eller lavere → thruster slukket</span>
+        <span class="s1">thruster </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;       </span><span class="s4">// markér at landingen er sket</span>
+    <span class="s2">}</span>
+    
+    <span class="s0">return </span><span class="s1">thruster</span><span class="s2">;</span>
+<span class="s2">}</span>
+
+<span class="s0">void </span><span class="s1">Test</span><span class="s2">(</span><span class="s0">int </span><span class="s1">altitude</span><span class="s2">)</span>
+<span class="s2">{</span>
+    <span class="s0">int </span><span class="s1">thruster </span><span class="s2">= </span><span class="s1">Control</span><span class="s2">(</span><span class="s1">altitude</span><span class="s2">);</span>
+    <span class="s0">bool </span><span class="s1">behaviorCorrect </span><span class="s2">= (</span><span class="s1">altitude </span><span class="s2">&gt; </span><span class="s3">100 </span><span class="s2">&amp;&amp; </span><span class="s1">thruster </span><span class="s2">== </span><span class="s3">0</span><span class="s2">) ||</span>
+                           <span class="s2">(</span><span class="s1">altitude </span><span class="s0">is </span><span class="s2">&lt;= </span><span class="s3">100 </span><span class="s1">and </span><span class="s2">&gt; </span><span class="s3">0 </span><span class="s2">&amp;&amp; </span><span class="s1">thruster </span><span class="s2">== </span><span class="s3">1</span><span class="s2">) ||</span>
+                           <span class="s2">(</span><span class="s1">altitude </span><span class="s2">&lt;= </span><span class="s3">0 </span><span class="s2">&amp;&amp; </span><span class="s1">thruster </span><span class="s2">== </span><span class="s3">0</span><span class="s2">);</span>
+    <span class="s1">var behaviorCorrectIcon </span><span class="s2">= </span><span class="s1">behaviorCorrect ? </span><span class="s5">&quot;✅&quot; </span><span class="s1">: </span><span class="s5">&quot;❌&quot;</span><span class="s2">;</span>
+    <span class="s1">Console</span><span class="s2">.</span><span class="s1">WriteLine</span><span class="s2">(</span><span class="s5">$&quot;For altitude </span><span class="s2">{</span><span class="s1">altitude</span><span class="s2">}</span><span class="s5">, your thruster is </span><span class="s2">{</span><span class="s1">thruster</span><span class="s2">} </span><span class="s5">|</span><span class="s2">{</span><span class="s1">behaviorCorrectIcon</span><span class="s2">}</span><span class="s5">|&quot;</span><span class="s2">);</span>
+<span class="s2">}</span>
+
+<span class="s1">Test</span><span class="s2">(</span><span class="s3">150</span><span class="s2">);</span>
+<span class="s1">Test</span><span class="s2">(</span><span class="s3">100</span><span class="s2">);</span>
+<span class="s1">Test</span><span class="s2">(</span><span class="s3">50</span><span class="s2">);</span>
+<span class="s1">Test</span><span class="s2">(</span><span class="s3">0</span><span class="s2">);</span>
+<span class="s1">Test</span><span class="s2">(-</span><span class="s3">1</span><span class="s2">);</span></pre>
+</body>
+</html>
