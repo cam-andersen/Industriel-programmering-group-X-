@@ -1,0 +1,20 @@
+//We have two inputs that goes into the determination of the conveyor belt: weight and number og motors
+//Starts by defining the first input, weight.
+Console.WriteLine("weight of the packages");
+//We can then set the datatype. The weight is in kg and we must be able to see the grams of the packages.
+//The correct datatype should then be double.
+double weight = Convert.ToDouble(Console.ReadLine());
+
+//Defines the second input, number of motors.
+Console.WriteLine("antal_motorer");
+//There can only be integer number of motors and this is the datatype.
+int antal_motorer = Convert.ToInt32(Console.ReadLine());
+
+//Determing if the conveyor belt can operate from the weight and number of motors.
+//We can from the end of the flowchart do the condition that determines whether the conveyor belt can operate or not.
+//Uses the if/else statements as the system can operate when the weight for the packages are below 5.6 kg
+if (weight / antal_motorer <= 5.6)
+    Console.WriteLine("Yes, the conveyor belt can operate");
+else
+    Console.WriteLine("No, the weight is too high");
+
