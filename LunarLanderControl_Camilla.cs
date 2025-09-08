@@ -20,7 +20,7 @@ void Test(int altitude)
     bool behaviorCorrect = (altitude > 100 && thruster == 0) ||
                            (altitude is <= 100 and > 0 && thruster == 1) ||
                            (altitude <= 0 && thruster == 0);
-    var behaviorCorrectIcon = behaviorCorrect ? "✅" : "❌";
+    var behaviorCorrectIcon = behaviorCorrect ? "Yes" : "No";
     Console.WriteLine($"For altitude {altitude}, your thruster is {thruster} |{behaviorCorrectIcon}|");
 }
 
